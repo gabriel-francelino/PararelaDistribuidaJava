@@ -22,7 +22,11 @@ public class CalculatorImpl extends UnicastRemoteObject implements Calculator {
     public double sub(double... numbers) throws RemoteException {
         double subValues = 0;
         for (double number : numbers) {
-            subValues -= number;
+            if(number == numbers[0]){
+                subValues = number;
+            }else{
+                subValues -= number;
+            }
         }
         return subValues;
     }
