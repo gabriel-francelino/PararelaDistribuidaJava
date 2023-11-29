@@ -36,6 +36,8 @@ public class BankHandler extends Bank implements Runnable {
     public void run() {
         try {
             String operation;
+            double amount;
+            int accountNumber;
             while (!Objects.equals(operation = in.readLine(), "0")) {
 
                 switch (operation) {
@@ -44,24 +46,30 @@ public class BankHandler extends Bank implements Runnable {
                         out.println(createAccount(nameAccount));
                         break;
                     case "2":
-                        int accountNUmber = Integer.parseInt(in.readLine());
-                        double amount = Double.parseDouble(in.readLine());
-                        out.println(deposit(accountNUmber, amount));
+                        accountNumber = Integer.parseInt(in.readLine());
+                        amount = Double.parseDouble(in.readLine());
+                        out.println(deposit(accountNumber, amount));
                         break;
                     case "3":
-
+                        accountNumber = Integer.parseInt(in.readLine());
+                        amount = Double.parseDouble(in.readLine());
+                        out.println(withdraw(accountNumber, amount));
                         break;
                     case "4":
-
+                        int accountSendId = Integer.parseInt(in.readLine());
+                        int accountRecvId = Integer.parseInt(in.readLine());
+                        amount = Double.parseDouble(in.readLine());
+                        out.println(transfer(accountSendId, accountRecvId, amount));
                         break;
                     case "5":
-
+                        accountNumber = Integer.parseInt(in.readLine());
+                        out.println(getBalance(accountNumber));
                         break;
                     case "0":
-
+                        System.out.println("Conexão encerrada!");
                         break;
                     default:
-                        out.println("Invalid operation");
+                        out.println("Operação inválida!");
                 }
             }
         } catch (IOException e) {
