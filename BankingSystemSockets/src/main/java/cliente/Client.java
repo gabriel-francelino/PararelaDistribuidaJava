@@ -55,11 +55,10 @@ public class Client {
                     accountNumber = userInput.readLine();
                     out.println(accountNumber);
                     break;
-                default:
-//                    String returnFailed = in.readLine();
+                default: ;
             }
 
-            System.out.println("Resposta do servidor: " + in.readLine());
+            System.out.println(in.readLine());
         } while(!input.equals("0"));
 
         socket.close();

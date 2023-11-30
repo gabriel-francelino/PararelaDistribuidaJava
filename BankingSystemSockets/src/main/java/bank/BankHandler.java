@@ -144,15 +144,21 @@ public class BankHandler extends Bank implements Runnable {
             accountSend.setBalance(-amount);
             accountRecv.setBalance(amount);
 
-            String proofOfTransfer =
-                    "============================\n" +
-                            "Comprovante de transferência\n" +
-                            "Conta de origem: " + accountSend.getName() + "\n" +
-                            "Conta de destino: " + accountRecv.getName() + "\n" +
-                            "Valor: " + brazilianNumberFormat(amount) + "\n" +
-                            "============================\n";
+//            String proofOfTransfer =
+//                    "============================\n" +
+//                            "Comprovante de transferência\n" +
+//                            "Conta de origem: " + accountSend.getName() + "\n" +
+//                            "Conta de destino: " + accountRecv.getName() + "\n" +
+//                            "Valor: " + brazilianNumberFormat(amount) + "\n" +
+//                            "============================\n";
 
-            return proofOfTransfer;
+            String response = "Transferência realizada com sucesso! [" +
+                    "Origem: " + accountSend.getName() + ", " +
+                    "Destino: " + accountRecv.getName() + ", " +
+                    "Valor: " + brazilianNumberFormat(amount) + "]";
+                    ;
+
+            return response;
         }
     }
 
