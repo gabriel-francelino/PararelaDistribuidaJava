@@ -9,7 +9,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class BankHandler extends Bank implements Runnable {
+public class BankHandler implements Runnable {
     // Variáveis de comunicação
     private BufferedReader in;
     private PrintWriter out;
@@ -40,35 +40,32 @@ public class BankHandler extends Bank implements Runnable {
             while ((operation = in.readLine()) != null) {
 
                 switch (operation) {
-                    case "1":
+                    case "1" -> {
                         String nameAccount = in.readLine();
                         out.println(createAccount(nameAccount));
-                        break;
-                    case "2":
+                    }
+                    case "2" -> {
                         accountNumber = Integer.parseInt(in.readLine());
                         amount = Double.parseDouble(in.readLine());
                         out.println(deposit(accountNumber, amount));
-                        break;
-                    case "3":
+                    }
+                    case "3" -> {
                         accountNumber = Integer.parseInt(in.readLine());
                         amount = Double.parseDouble(in.readLine());
                         out.println(withdraw(accountNumber, amount));
-                        break;
-                    case "4":
+                    }
+                    case "4" -> {
                         int accountSendId = Integer.parseInt(in.readLine());
                         int accountRecvId = Integer.parseInt(in.readLine());
                         amount = Double.parseDouble(in.readLine());
                         out.println(transfer(accountSendId, accountRecvId, amount));
-                        break;
-                    case "5":
+                    }
+                    case "5" -> {
                         accountNumber = Integer.parseInt(in.readLine());
                         out.println(getBalance(accountNumber));
-                        break;
-                    case "0":
-                        out.println("Saindo...");
-                        break;
-                    default:
-                        out.println("Operação inválida!");
+                    }
+                    case "0" -> out.println("Saindo...");
+                    default -> out.println("Operação inválida!");
                 }
             }
         } catch (IOException e) {
@@ -95,16 +92,14 @@ public class BankHandler extends Bank implements Runnable {
         return account;
     }
 
-    @Override
-    String createAccount(String name) {
+    synchronized String createAccount(String name) {
         this.accountNumber++;
         Account account = new Account(this.accountNumber, name);
         this.accounts.add(account);
         return "Conta criada com sucesso! " + account.info();
     }
 
-    @Override
-    String deposit(int accountNumber, double amount) {
+    synchronized String deposit(int accountNumber, double amount) {
         Account account = findAccount(this.accounts, accountNumber);
 
         if (account == null) {
@@ -117,8 +112,7 @@ public class BankHandler extends Bank implements Runnable {
         }
     }
 
-    @Override
-    String withdraw(int accountNumber, double amount) {
+    synchronized String withdraw(int accountNumber, double amount) {
         Account account = findAccount(this.accounts, accountNumber);
 
         if (account == null) {
@@ -133,8 +127,7 @@ public class BankHandler extends Bank implements Runnable {
         }
     }
 
-    @Override
-    String transfer(int accountSendId, int accountRecvId, double amount) {
+    synchronized String transfer(int accountSendId, int accountRecvId, double amount) {
         Account accountSend = findAccount(this.accounts, accountSendId);
         Account accountRecv = findAccount(this.accounts, accountRecvId);
 
@@ -148,15 +141,11 @@ public class BankHandler extends Bank implements Runnable {
             accountSend.setBalance(-amount);
             accountRecv.setBalance(amount);
 
-            String response = "Transferência realizada com sucesso! [" + "Origem: " + accountSend.getName() + ", " + "Destino: " + accountRecv.getName() + ", " + "Valor: " + brazilianNumberFormat(amount) + "]";
-            ;
-
-            return response;
+            return "Transferência realizada com sucesso! [" + "Origem: " + accountSend.getName() + ", " + "Destino: " + accountRecv.getName() + ", " + "Valor: " + brazilianNumberFormat(amount) + "]";
         }
     }
 
-    @Override
-    String getBalance(int accountNumber) {
+    synchronized String getBalance(int accountNumber) {
         Account account = findAccount(this.accounts, accountNumber);
 
         if (account == null) {
