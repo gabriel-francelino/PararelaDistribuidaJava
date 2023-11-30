@@ -18,7 +18,7 @@ public class Client {
         String input = "-99";
 
         do {
-            System.out.print("Escolha uma opção: ");
+            showOptions();
             input = userInput.readLine();
             out.println(input);
 
@@ -61,28 +61,19 @@ public class Client {
 
             System.out.println("Resposta do servidor: " + in.readLine());
         } while(!input.equals("0"));
-        // Convert input String to bytes using default character encoding
-//        byte[] byteBuffer = args[1].getBytes();
-//        int servPort = Integer.parseInt(args[1]);
-//        System.out.println("Antes de conectar " + server + " " + servPort);
-//
-//        // Create socket that is connected to server on specified port
-//        Socket socket = new Socket(server, servPort);
-//        System.out.println("Connected to server... sending echo string");
-//        InputStream in = socket.getInputStream();
-//        OutputStream out = socket.getOutputStream();
-//        out.write(byteBuffer); // Send the encoded string to the server
-//        // Receive the same string back from the server
-//        int totalBytesRcvd = 0;
-//        int bytesRcvd;
-//        while (totalBytesRcvd < byteBuffer.length) {
-//            if ((bytesRcvd = in.read(byteBuffer, totalBytesRcvd, byteBuffer.length - totalBytesRcvd)) == -1) {
-//                socket.close();
-//                throw new SocketException("Connection closed prematurely");
-//            }
-//            totalBytesRcvd += bytesRcvd;
-//        }
-//        System.out.println("Received: " + new String(byteBuffer));
+
         socket.close();
+    }
+
+    private static void showOptions() {
+        System.out.println("=============== Bem vindos ao Banco ===============");
+        System.out.println("1 - Criar conta");
+        System.out.println("2 - Depositar");
+        System.out.println("3 - Sacar");
+        System.out.println("4 - Transferir");
+        System.out.println("5 - Saldo");
+        System.out.println("6 - Sair");
+        System.out.println("===================================================");
+        System.out.print("Digite a opção desejada: ");
     }
 }
