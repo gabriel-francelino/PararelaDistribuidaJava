@@ -32,7 +32,7 @@ public class Server {
                 Thread bank = new Thread(new BankHandler(socket));
                 bank.start();
 
-                socket.close();
+//                socket.close();
             }
         } catch (IOException e) {
             e.printStackTrace();

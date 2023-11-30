@@ -12,6 +12,7 @@ import java.util.Objects;
 
 public class BankHandler extends Bank implements Runnable {
     // Variáveis de comunicação
+    BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
     private BufferedReader in;
     private PrintWriter out;
 
@@ -38,7 +39,7 @@ public class BankHandler extends Bank implements Runnable {
             String operation;
             double amount;
             int accountNumber;
-            while (!Objects.equals(operation = in.readLine(), "0")) {
+            while ((operation = in.readLine()) != null) {
 
                 switch (operation) {
                     case "1":
@@ -66,7 +67,7 @@ public class BankHandler extends Bank implements Runnable {
                         out.println(getBalance(accountNumber));
                         break;
                     case "0":
-                        System.out.println("Conexão encerrada!");
+                        out.println("Saindo...");
                         break;
                     default:
                         out.println("Operação inválida!");

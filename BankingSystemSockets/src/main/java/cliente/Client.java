@@ -17,15 +17,41 @@ public class Client {
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         String input = "-99";
 
-        while (true) {
+        do {
             System.out.print("Escolha uma opção: ");
             input = userInput.readLine();
-            if (input == null || input.equals("0")) {
-                break;
-            }
             out.println(input);
-            System.out.println("Server response: " + in.readLine());
-        }
+
+            String accountNumber;
+            String amount;
+
+            switch (input) {
+                case "1":
+                    System.out.println("Digite seu nome:");
+                    String nameAccount = userInput.readLine();
+                    out.println(input);
+                    break;
+                case "2", "3":
+                    accountNumber = userInput.readLine();
+                    amount = userInput.readLine();
+                    out.println(input);
+                    break;
+                case "4":
+                    String accountSendId = userInput.readLine();
+                    String accountRecvId = userInput.readLine();
+                    amount = userInput.readLine();
+                    out.println(input);
+                    break;
+                case "5":
+                    accountNumber = userInput.readLine();
+                    out.println(input);
+                    break;
+                default:
+//                    String returnFailed = in.readLine();
+            }
+
+            System.out.println("Resposta do servidor: \n" + in.readLine());
+        } while(!input.equals("0"));
         // Convert input String to bytes using default character encoding
 //        byte[] byteBuffer = args[1].getBytes();
 //        int servPort = Integer.parseInt(args[1]);
