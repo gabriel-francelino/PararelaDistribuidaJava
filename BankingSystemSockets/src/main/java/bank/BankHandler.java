@@ -21,7 +21,7 @@ public class BankHandler extends Bank implements Runnable {
     private ArrayList<Account> accounts;
 
     public BankHandler(Socket socket) {
-        this.accountNumber = 0;
+        this.accountNumber = 1000;
         this.accounts = new ArrayList<>();
 
         try {
@@ -102,7 +102,7 @@ public class BankHandler extends Bank implements Runnable {
         this.accountNumber++;
         Account account = new Account(this.accountNumber, name);
         this.accounts.add(account);
-        return "Conta criada com sucesso!\n" + account.info();
+        return "Conta criada com sucesso! " + account.info();
     }
 
     @Override

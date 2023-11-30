@@ -37,10 +37,11 @@ public class Account {
     }
 
     public String info() {
-        return "============================\n" +
-                "Nome: " + this.name + "\n" +
-                "Número da conta: " + this.accountNumber + "\n" +
-                "Saldo: " + brazilianNumberFormat(this.balance) + "\n" +
-                "============================\n";
+        String information = "============================ " +
+                "Nome: " + this.name + " " +
+                "Número da conta: " + this.accountNumber + " " +
+                "Saldo: " + brazilianNumberFormat(this.balance) + " " +
+                "============================ ";
+        return information;
     }
 }

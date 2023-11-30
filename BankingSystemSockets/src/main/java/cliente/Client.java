@@ -29,28 +29,37 @@ public class Client {
                 case "1":
                     System.out.println("Digite seu nome:");
                     String nameAccount = userInput.readLine();
-                    out.println(input);
+                    out.println(nameAccount);
                     break;
                 case "2", "3":
+                    System.out.println("Digite o número da conta:");
                     accountNumber = userInput.readLine();
+                    System.out.println("Digite o valor:");
                     amount = userInput.readLine();
-                    out.println(input);
+                    out.println(accountNumber);
+                    out.println(amount);
                     break;
                 case "4":
+                    System.out.println("Digite o número da conta de origem:");
                     String accountSendId = userInput.readLine();
+                    System.out.println("Digite o número da sua conta de destino:");
                     String accountRecvId = userInput.readLine();
+                    System.out.println("Digite o valor a ser transferido:");
                     amount = userInput.readLine();
-                    out.println(input);
+                    out.println(accountSendId);
+                    out.println(accountRecvId);
+                    out.println(amount);
                     break;
                 case "5":
+                    System.out.println("Digite o número da conta:");
                     accountNumber = userInput.readLine();
-                    out.println(input);
+                    out.println(accountNumber);
                     break;
                 default:
 //                    String returnFailed = in.readLine();
             }
 
-            System.out.println("Resposta do servidor: \n" + in.readLine());
+            System.out.println("Resposta do servidor: " + in.readLine());
         } while(!input.equals("0"));
         // Convert input String to bytes using default character encoding
 //        byte[] byteBuffer = args[1].getBytes();
