@@ -121,9 +121,7 @@ public class BankHandler extends Bank implements Runnable {
     String withdraw(int accountNumber, double amount) {
         Account account = findAccount(this.accounts, accountNumber);
 
-        if (account == null) {
-            return "Conta não encontrada!";
-        } else if (amount < 0) {
+        if (amount < 0) {
             return "O valor do saque deve ser maior que 0!";
         } else if (amount > account.getBalance() || 0 >= account.getBalance()) {
             return "Operação inválida! Não há saldo suficiente!";
@@ -138,9 +136,7 @@ public class BankHandler extends Bank implements Runnable {
         Account accountSend = findAccount(this.accounts, accountSendId);
         Account accountRecv = findAccount(this.accounts, accountRecvId);
 
-        if (accountSend == null || accountRecv == null) {
-            return "Conta não encontrada!";
-        } else if (amount < 0) {
+        if (amount < 0) {
             return "O valor do saque deve ser positivo!";
         } else if (amount > accountSend.getBalance() || 0 >= accountSend.getBalance()) {
             return "Operação inválida! Não há saldo suficiente!";
