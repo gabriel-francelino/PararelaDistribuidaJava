@@ -8,11 +8,9 @@ import java.net.Socket;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Objects;
 
 public class BankHandler extends Bank implements Runnable {
     // Variáveis de comunicação
-    BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
     private BufferedReader in;
     private PrintWriter out;
 
@@ -144,19 +142,11 @@ public class BankHandler extends Bank implements Runnable {
             accountSend.setBalance(-amount);
             accountRecv.setBalance(amount);
 
-//            String proofOfTransfer =
-//                    "============================\n" +
-//                            "Comprovante de transferência\n" +
-//                            "Conta de origem: " + accountSend.getName() + "\n" +
-//                            "Conta de destino: " + accountRecv.getName() + "\n" +
-//                            "Valor: " + brazilianNumberFormat(amount) + "\n" +
-//                            "============================\n";
-
             String response = "Transferência realizada com sucesso! [" +
                     "Origem: " + accountSend.getName() + ", " +
                     "Destino: " + accountRecv.getName() + ", " +
                     "Valor: " + brazilianNumberFormat(amount) + "]";
-                    ;
+            ;
 
             return response;
         }

@@ -2,7 +2,6 @@ package cliente;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class Client {
     private static final String SERVER_NAME = "localhost";
@@ -15,7 +14,7 @@ public class Client {
         BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        String input = "-99";
+        String input;
 
         do {
             showOptions();
@@ -26,40 +25,42 @@ public class Client {
             String amount;
 
             switch (input) {
-                case "1":
-                    System.out.println("Digite seu nome:");
+                case "1" -> {
+                    System.out.print("Digite seu nome: ");
                     String nameAccount = userInput.readLine();
                     out.println(nameAccount);
-                    break;
-                case "2", "3":
-                    System.out.println("Digite o número da conta:");
+                }
+                case "2", "3" -> {
+                    System.out.print("Digite o número da conta: ");
                     accountNumber = userInput.readLine();
-                    System.out.println("Digite o valor:");
+                    System.out.print("Digite o valor: ");
                     amount = userInput.readLine();
                     out.println(accountNumber);
                     out.println(amount);
-                    break;
-                case "4":
-                    System.out.println("Digite o número da conta de origem:");
+                }
+                case "4" -> {
+                    System.out.print("Digite o número da conta de origem: ");
                     String accountSendId = userInput.readLine();
-                    System.out.println("Digite o número da sua conta de destino:");
+                    System.out.print("Digite o número da sua conta de destino: ");
                     String accountRecvId = userInput.readLine();
-                    System.out.println("Digite o valor a ser transferido:");
+                    System.out.print("Digite o valor a ser transferido: ");
                     amount = userInput.readLine();
                     out.println(accountSendId);
                     out.println(accountRecvId);
                     out.println(amount);
-                    break;
-                case "5":
-                    System.out.println("Digite o número da conta:");
+                }
+                case "5" -> {
+                    System.out.print("Digite o número da conta: ");
                     accountNumber = userInput.readLine();
                     out.println(accountNumber);
-                    break;
-                default: ;
+                }
+                default -> {
+
+                }
             }
 
             System.out.println(in.readLine());
-        } while(!input.equals("0"));
+        } while (!input.equals("0"));
 
         socket.close();
     }
